@@ -13,7 +13,7 @@ public class CustomParticleSystem : MonoBehaviour
     [SerializeField] private Material material;
     private ComputeBuffer buffer;
     private int kernelId;
-    private int particleCount = 100000;
+    private int particleCount = 1000000;
     private int nbOfParticlesPerThread = 256;
     private int nbOfThreads;
     struct Particle
@@ -62,7 +62,8 @@ public class CustomParticleSystem : MonoBehaviour
     private void OnRenderObject()
     {
         material.SetPass(0);
-        Graphics.DrawProceduralNow(MeshTopology.Points, 1, particleCount);
+        //Partie A1
+        Graphics.DrawProceduralNow(MeshTopology.Triangles, 4, particleCount);
     }
     void OnDestroy()
     {
