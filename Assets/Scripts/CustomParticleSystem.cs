@@ -13,9 +13,11 @@ public class CustomParticleSystem : MonoBehaviour
     [SerializeField] private Material material;
     private ComputeBuffer buffer;
     private int kernelId;
-    private int particleCount = 1000000;
-    private int nbOfParticlesPerThread = 256;
+    private int particleCount = 7000000;
+    private int nbOfParticlesPerThread = 512;
     private int nbOfThreads;
+    private float dispersion = 4;
+    private float halfDispersion;
     struct Particle
     {
         public Vector3 position;
@@ -27,13 +29,15 @@ public class CustomParticleSystem : MonoBehaviour
 
     private void Start()
     {
+        halfDispersion = dispersion / 2;
         nbOfThreads = Mathf.CeilToInt((float)particleCount / nbOfParticlesPerThread);
         Particle[] particleArray = new Particle[particleCount];
         for (int i = 0; i < particleCount; i++)
         {
-            float x = Random.value * 2 - 1.0f;
-            float y = Random.value * 2 - 1.0f;
-            float z = Random.value * 2 - 1.0f;
+            
+            float x = Random.value * dispersion - halfDispersion;
+            float y = Random.value * dispersion - halfDispersion;
+            float z = Random.value * dispersion - halfDispersion;
             Vector3 xyz = new Vector3(x, y, z);
             xyz.Normalize();
             xyz *= Random.value;

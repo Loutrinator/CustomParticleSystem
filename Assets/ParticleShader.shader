@@ -55,7 +55,7 @@ Shader "Custom/Particle" {
 		[maxvertexcount(4)] // on génère un triangle strip de 4 points
 		void geom(point v2g IN[1], inout TriangleStream<g2f> triStream) {
 			g2f p;
-			float s = 0.025;
+			float s = 0.01;
 			p.life = IN[0].life;
 			p.color = IN[0].color;
 			p.position = IN[0].position + float4(-s, -s *2, 0, 0);//top left

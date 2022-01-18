@@ -41,7 +41,7 @@ void CSParticle(uint3 id : SV_DispatchThreadID)
     float3 delta = float3(mousePos.xy, 3) - particleBuffer[id.x].position;
     float3 dir = normalize(delta);
 
-    particleBuffer[id.x].velocity += dir;
+    particleBuffer[id.x].velocity += dir*0.5;
     particleBuffer[id.x].position += particleBuffer[id.x].velocity * deltaTime;
 
 
