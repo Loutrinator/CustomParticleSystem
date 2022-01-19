@@ -42,8 +42,8 @@ Shader "Custom/Particle" {
 			v2g o = (v2g)0;
 
 			// Color
-			float life = particleBuffer[instance_id].life / 4.0f;
-			float intensity = 5;
+			float life = particleBuffer[instance_id].life / 2.0f;
+			float intensity = 10;
 			//cyan    r 0 v 1 b 1
 			//bleu    r 0 v 0 b 1
 			//magenta r 1 v 0 b 1
@@ -59,7 +59,7 @@ Shader "Custom/Particle" {
 		[maxvertexcount(4)] // on génère un triangle strip de 4 points
 		void geom(point v2g IN[1], inout TriangleStream<g2f> triStream) {
 			g2f p;
-			float s = 0.001;
+			float s = 0.005;
 			p.life = IN[0].life;
 			p.color = IN[0].color;
 			p.position = IN[0].position + float4(-s, -s *2, 0, 0);//top left
